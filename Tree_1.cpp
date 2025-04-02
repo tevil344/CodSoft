@@ -37,9 +37,37 @@ node* buildTree(node* root){
     return root;
 }
 
+void levelOrderTraversal(node* root){
+    queue<node*> q;
+    q.push(root);
+    q.push(NULL);
+    while(!q.empty()){
+        node* temp=q.front();
+        q.pop();
+        if(temp==NULL){
+            cout<<endl;
+            if(!q.empty()){
+                q.push(NULL);
+            }
+        }
+        else{
+            cout<<temp->data<<" ";
+            if(temp->left!=NULL){
+                q.push(temp->left);
+            }
+            if(temp->right!=NULL){
+                q.push(temp->right);
+            }
+        }
+    }
+}
+
 int main(){
     node* root=NULL;
     root=buildTree(root);
     cout<<"Tree built successfully!"<<endl;
+    cout<<"Level Order Traversal of the tree is: "<<endl;
+    levelOrderTraversal(root);
+    cout<<endl;
     return 0;
 }
