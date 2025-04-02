@@ -37,6 +37,33 @@ node* buildTree(node* root){
     return root;
 }
 
+void inOrder(node* root){
+    if(root==NULL){
+        return;
+    }
+    inOrder(root->left);
+    cout<<root->data<<" ";
+    inOrder(root->right);
+}
+
+void preOrder(node* root){
+    if(root==NULL){
+        return;
+    }
+    cout<<root->data<<" ";
+    preOrder(root->left);
+    preOrder(root->right);
+}
+
+void postOrder(node* root){
+    if(root==NULL){
+        return;
+    }
+    postOrder(root->left);
+    postOrder(root->right);
+    cout<<root->data<<" ";
+}
+
 void levelOrderTraversal(node* root){
     queue<node*> q;
     q.push(root);
@@ -62,12 +89,28 @@ void levelOrderTraversal(node* root){
     }
 }
 
+int heightTree(node* root){
+    if(root==NULL){
+        return 0;
+    }
+    return max(heightTree(root->left), heightTree(root->right))+1;
+}
+
 int main(){
     node* root=NULL;
     root=buildTree(root);
     cout<<"Tree built successfully!"<<endl;
     cout<<"Level Order Traversal of the tree is: "<<endl;
     levelOrderTraversal(root);
+    cout<<endl;
+    cout<<"In Order Traversal of the tree is: "<<endl;
+    inOrder(root);
+    cout<<endl;
+    cout<<"Pre Order Traversal of the tree is: "<<endl;
+    preOrder(root);
+    cout<<endl;
+    cout<<"Post Order Traversal of the tree is: "<<endl;
+    postOrder(root);
     cout<<endl;
     return 0;
 }
